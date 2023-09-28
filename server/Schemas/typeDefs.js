@@ -16,14 +16,6 @@ type User {
     description: String!
     image: String
     link: String
-    comments: [Comment]!
-  }
-
-  type Comment {
-    _id: ID
-    commentText: String
-    commentAuthor: String
-    createdAt: String
   }
 
   type Auth {
