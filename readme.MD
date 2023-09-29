@@ -16,10 +16,6 @@ Deployed website: https://safe-crag-58610-9516552011de.herokuapp.com/
 ![Alt text](image.png)
 
 
-## Credit
-
-Bootstrap cards and styling were created by a designer called Nikki Peel. They were acquired from the website freefrontend.com. Link to the cards: https://codepen.io/nikki-peel/pen/RwavQer
-
 
 ## License
 
