@@ -38,15 +38,15 @@ const resolvers = {
       return { token, user };
     },
     //if user is logged in, save a book to user's saved books
-    saveBook: async (parent, { book }, context) => {
+    saveBook: async (parent, { savedData }, context) => {
       if (context.user) {
        
         const update = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedBooks: book } },
+          { $addToSet: { savedBooks: savedData } },
           { new: true}
-        );
-
+        )
+        
         return update;
       }
       throw AuthenticationError;
