@@ -12,13 +12,13 @@ import { QUERY_ME } from '../utils/queries'
 import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
+import { REMOVE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
  const { loading, data }= useQuery(QUERY_ME);
+ const [deleteBook, {error}] = useMutation(REMOVE_BOOK)
 
   const userData = data?.me || {};
-
-  console.log(userData);
 
 
 
@@ -31,14 +31,10 @@ const handleDeleteBook = async (bookId) => {
   }
 
   try {
-    const response = await deleteBook(bookId, token);
+    const {data} = await deleteBook({
+      variables: {bookId}
+    });
 
-    if (!response.ok) {
-      throw new Error('something went wrong!');
-    }
-
-    const updatedUser = await response.json();
-    setUserData(updatedUser);
     // upon success, remove book's id from localStorage
     removeBookId(bookId);
   } catch (err) {
