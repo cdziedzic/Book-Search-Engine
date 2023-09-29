@@ -39,6 +39,7 @@ const resolvers = {
     },
     //if user is logged in, save a book to user's saved books
     saveBook: async (parent, { savedData }, context) => {
+      console.log("hitting saveBook")
       if (context.user) {
        
         const update = await User.findOneAndUpdate(

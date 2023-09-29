@@ -7,9 +7,10 @@ import {
   Card,
   Row
 } from 'react-bootstrap';
-
+import { useMutation, useQuery } from '@apollo/client';
+import { SAVE_BOOK } from '../utils/mutations';
 import Auth from '../utils/auth';
-import { saveBook, searchGoogleBooks } from '../utils/API';
+import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 const SearchBooks = () => {
@@ -20,6 +21,7 @@ const SearchBooks = () => {
 
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
+  const [saveBook, {data, error}] = useMutation(SAVE_BOOK);
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -72,10 +74,13 @@ const SearchBooks = () => {
     }
 
       try {
-        const {data} = await saveBook({ variables: {savedData:{...bookToSave}}});
+
+        // console.log(bookToSave)
+        // console.log({...bookToSave})
+        const {data} = await saveBook({ variables:{ savedData:bookToSave}});
+        console.log(data)
         // if book successfully saves to user's account, save book id to state
         setSavedBookIds([...savedBookIds, bookToSave.bookId]);
-
     } catch (err) {
       console.error(err);
     }
