@@ -8,7 +8,7 @@ An app to search for books using google's book api. The user can then choose to 
 
 github: https://github.com/cdziedzic/Book-Search-Engine
 
-Deployed website: https://safe-crag-58610-9516552011de.herokuapp.com/
+Deployed website: https://limitless-basin-80379-a45afda8922e.herokuapp.com/
 
 
 ## Screenshot
